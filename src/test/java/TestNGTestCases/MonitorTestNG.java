@@ -44,9 +44,7 @@ public class MonitorTestNG {
 
  // @AfterTest
   public void afterTest() {
-	  //System.out.print(amazonPageObjects.ProductPageTotal);
-	  //System.out.print(amazonPageObjects.ProductPageSubTotal);
-	  //System.out.print(amazonPageObjects.ProductPagePrice);
+
 	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	  driver.quit();
   }
