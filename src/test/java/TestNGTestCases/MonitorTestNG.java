@@ -3,6 +3,8 @@ package TestNGTestCases;
 import org.testng.annotations.Test;
 import PageObject.MonitorPageObjects;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import java.time.Duration;
 import org.openqa.selenium.WebDriver;
@@ -18,16 +20,15 @@ public class MonitorTestNG {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		amazonPageObjects = new  MonitorPageObjects (driver);
 		amazonPageObjects.AcceptButton();
-		amazonPageObjects.SearchforItem.sendKeys("Laptop");
+		amazonPageObjects.SearchforItem.sendKeys("Monitor");
 		amazonPageObjects.ClickOnSearchButton();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		amazonPageObjects.ClickOnFirstItem();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		System.out.println(amazonPageObjects.ProductPagePrice);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		amazonPageObjects.AddItemToCart();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		amazonPageObjects.NoThankYouButton();	
+		amazonPageObjects.NoThanksButton();	
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		amazonPageObjects.ClickOnCart();
 	
@@ -42,7 +43,7 @@ public class MonitorTestNG {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
   }
 
- // @AfterTest
+ @AfterTest
   public void afterTest() {
 
 	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

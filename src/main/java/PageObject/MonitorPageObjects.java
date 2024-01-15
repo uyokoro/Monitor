@@ -21,14 +21,11 @@ public class MonitorPageObjects {
 	@FindBy (xpath = "(//img[@class='s-image'])[1]")
 	public WebElement ClickOnFirstItem;
 	
-	@FindBy (xpath = "(//span[@class='a-offscreen'])[2]")
-	public WebElement ProductPagePrice;
-	
 	@FindBy (id = "add-to-cart-button")
 	public WebElement AddItemToCart;
 	
 	@FindBy (xpath = "//input[@aria-labelledby='attachSiNoCoverage-announce']")
-	public WebElement NoThankYouButton;
+	public WebElement NoThanksButton;
 	
 	@FindBy (xpath = "//a[@href='/cart?ref_=sw_gtc']")
 	public WebElement ClickOnCart;
@@ -64,19 +61,14 @@ public class MonitorPageObjects {
 		ClickOnFirstItem.click();
 	}
 	
-	public void ProductPagePrice () {
-		
-		ProductPagePrice.getText();
-	}
-	
 	public void AddItemToCart () {
 		
 		AddItemToCart.click();
 	}
 	
-	public void NoThankYouButton () {
+	public void NoThanksButton () {
 		
-		NoThankYouButton.click();
+		NoThanksButton.click();
 	}
 	
 	public void ClickOnCart () {

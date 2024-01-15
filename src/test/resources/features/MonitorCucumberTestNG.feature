@@ -1,6 +1,6 @@
 Feature: Adding First Item in Cart and verifying sub total
 
-  Scenario: Adding a “Laptop” Item in Cart and verifying sub total
+  Scenario: Adding a “Monitor” Item in Cart and verifying sub total
     Given open Amazon.com
     And in the Search field type “Monitor”
     Then press “Enter”

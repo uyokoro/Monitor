@@ -59,7 +59,7 @@ public class MonitorCucumberTestNG {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		amazonPageObjects.AddItemToCart();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		amazonPageObjects.NoThankYouButton();
+		amazonPageObjects.NoThanksButton();
 	  
 	}
 
