@@ -58,8 +58,8 @@ public class MonitorCucumberTestNG {
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		amazonPageObjects.AddItemToCart();
-		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		//amazonPageObjects.NoThankYouButton();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		amazonPageObjects.NoThankYouButton();
 	  
 	}
 
@@ -74,15 +74,13 @@ public class MonitorCucumberTestNG {
 	@Then("verify that the price is identical to the product page")
 	public void verify_that_the_price_is_identical_to_the_product_page() {
 	    
-		 System.out.print(amazonPageObjects.ProductPageTotal);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 	
 	@AfterTest
 	@Then("verify that the sub total is identical to the product page")
 	public void verify_that_the_sub_total_is_identical_to_the_product_page() {
 		
-		System.out.print(amazonPageObjects.ProductPageSubTotal);
-		  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		  driver.quit();
 	    
 	}
