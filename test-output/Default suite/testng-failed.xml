@@ -7,6 +7,7 @@
         <methods>
           <include name="f"/>
           <include name="beforeTest"/>
+          <include name="afterTest"/>
         </methods>
       </class> <!-- TestNGTestCases.MonitorTestNG -->
     </classes>
