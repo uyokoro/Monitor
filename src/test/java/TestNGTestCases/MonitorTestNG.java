@@ -1,9 +1,9 @@
 package TestNGTestCases;
 
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import PageObject.MonitorPageObjects;
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import java.time.Duration;
@@ -11,43 +11,64 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class MonitorTestNG {
-	static WebDriver driver;
-	
-	static MonitorPageObjects amazonPageObjects;
+	public WebDriver driver;
+	public MonitorPageObjects amazonPageObjects;
+	SoftAssert softAssert = new SoftAssert();
 
-  @Test
-  public void f() throws InterruptedException {
+	@Test
+	public void MonitorTest() throws InterruptedException {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		amazonPageObjects = new  MonitorPageObjects (driver);
+		amazonPageObjects = new MonitorPageObjects(driver);
 		amazonPageObjects.AcceptButton();
 		amazonPageObjects.SearchforItem.sendKeys("Monitor");
 		amazonPageObjects.ClickOnSearchButton();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		amazonPageObjects.ClickOnFirstItem();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		String PagePrice = amazonPageObjects.ProductPagePrice();
+		System.out.println(PagePrice);
+
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		amazonPageObjects.AddItemToCart();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		amazonPageObjects.NoThanksButton();	
+		amazonPageObjects.NoThanksButton();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		amazonPageObjects.ClickOnCart();
-	
-  }
- @BeforeTest
-  public void beforeTest() throws InterruptedException {
-	  
+		
+		String CartPrice = amazonPageObjects.CartPagePrice();
+		System.out.println(CartPrice);
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		String CartSubTotal = amazonPageObjects.CartPageSubTotal();
+		System.out.println(CartSubTotal);
+
+		softAssert.assertEquals(PagePrice, CartPrice,
+				"Attribute value mismatch for Product Page Price and Cart Page Price");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		softAssert.assertEquals(PagePrice, CartSubTotal,
+				"Attribute value mismatch for Product Page Price and Cart Page SubTotal");
+
+		softAssert.assertAll();
+
+	}
+
+	@BeforeTest
+	public void beforeTest() throws InterruptedException {
+
 		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver ();
+		driver = new ChromeDriver();
 		driver.get("https://www.amazon.co.uk/");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-  }
+	}
 
- @AfterTest
-  public void afterTest() {
+	@AfterTest
+	public void afterTest() {
 
-	  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-	  driver.quit();
-  }
-
+		if (driver != null) {
+			driver.quit();
+		}
+	}
 }
